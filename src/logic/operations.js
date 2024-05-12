@@ -1,5 +1,6 @@
 import Big from "big.js"
-import IsNumber from "./IsNumber"
+import IsNumber from "./isNumber"
+import Operate from "./operate"
 
 export default function Operations (state, buttonName) {
     if (buttonName === "AC"){
@@ -30,7 +31,7 @@ export default function Operations (state, buttonName) {
 
     if (buttonName = "/") {
         if (state.operator && state.following) {
-            const result = operate(state.total, state.following, state.operator)
+            const result = Operate(state.total, state.following, state.operator)
 
             return {total: Big(result).div(Big("100")).toString(), following: null, operator: null}
         }
@@ -55,7 +56,7 @@ export default function Operations (state, buttonName) {
     if (buttonName === "=") {
         if (state.following && state.operator) {
             return {
-                total: operate(state.total, state.following, state.operator),
+                total: Operate(state.total, state.following, state.operator),
                 following: null,
                 operator: null,
             }
@@ -74,7 +75,7 @@ export default function Operations (state, buttonName) {
     
     if (state.operator) {
         return {
-            total: operate(state.following, state.total, state.operator),
+            total: Operate(state.following, state.total, state.operator),
             following: null,
             operator: buttonName,
         }

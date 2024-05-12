@@ -1,6 +1,5 @@
 import Display from "./display";
 import ButtonPanel from "./buttonPanel";
-import Button from "./button";
 import { Component } from "react";
 import Operations from "../logic/operations";
 
@@ -19,7 +18,7 @@ class App extends Component {
     return (
       <div>
         <Display value={this.state.following || this.state.total || "0"} />
-        <ButtonPanel clickHandle={this.clickHandle} />
+        <ButtonPanel clickHandle={this.handleClick} />
       </div>
     );
   }
